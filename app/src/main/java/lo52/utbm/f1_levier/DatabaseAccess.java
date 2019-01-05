@@ -56,12 +56,44 @@ public class DatabaseAccess {
      *
      * @return a List of quotes
      */
-    public List<String> getTests() {
+    public List<String> getDatas() {
+
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Nom FROM Test", null);
+        Cursor cursor = database.rawQuery("SELECT Nom_participant, ech_participant, temps_sprint1 FROM participant", null);
+
+        if (cursor.moveToFirst()){
+            do {
+                // Passing values
+                String Nom_participant = cursor.getString(0);
+                String ech_participant = cursor.getString(1);
+                String temps_sprint1 = cursor.getString(2);
+
+
+
+                // Do something Here with values
+
+            } while(cursor.moveToNext());
+        }
+//        cursor.moveToFirst();
+//        while (!cursor.isAfterLast()) {
+//            list.add(cursor.getString(0));
+//            cursor.moveToNext();
+//        }
+        cursor.close();
+        return list;
+    }
+
+    public List<String> getTeams() {
+
+        List<String> list = new ArrayList<>();
+        Cursor cursor = database.rawQuery("SELECT e.nom_equipe, p.Nom_participant FROM equipe e " +
+                "INNER JOIN participant p ON e.id_equipe = p.fk_id_equipe GROUP BY e.id_equipe ORDER BY e.id_equipe",null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
+//            list.add(cursor.getString(1));
+//            list.get(1);
+//            list.add(1,cursor.getString(1));
             cursor.moveToNext();
         }
         cursor.close();
