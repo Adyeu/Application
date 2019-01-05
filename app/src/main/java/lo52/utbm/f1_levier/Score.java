@@ -19,10 +19,10 @@ public class Score extends AppCompatActivity {
         this.listView = (ListView) findViewById(R.id.listViewTest);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
-        List<String> Levier = databaseAccess.getTests();
+        List<String> test = databaseAccess.getTests();
         databaseAccess.close();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_gallery_item, Levier);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_gallery_item, test);
         this.listView.setAdapter(adapter);
     }
 }
