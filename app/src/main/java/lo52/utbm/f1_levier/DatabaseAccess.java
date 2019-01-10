@@ -86,8 +86,7 @@ public class DatabaseAccess {
     public List<String> getTeams() {
 
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT e.nom_equipe, p.Nom_participant FROM equipe e " +
-                "INNER JOIN participant p ON e.id_equipe = p.fk_id_equipe GROUP BY e.id_equipe ORDER BY e.id_equipe",null);
+        Cursor cursor = database.rawQuery("SELECT nom_equipe FROM equipe " ,null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
