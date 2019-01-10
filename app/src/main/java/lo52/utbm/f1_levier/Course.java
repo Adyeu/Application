@@ -8,9 +8,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 
 public class Course extends AppCompatActivity {
-
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +19,36 @@ public class Course extends AppCompatActivity {
 
         Button startButton = (Button) findViewById(R.id.button_start);
 
+        Button stopButton = (Button) findViewById(R.id.button_stop);
 
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                switch (v.getId()) {
+
+                    case R.id.button_start:
                         chrono.start();
-//                        chrono.getAutofillValue()
+
+                }
+
             }
+
+        });
+
+        stopButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                switch (v.getId()) {
+
+                    case R.id.button_stop:
+                        chrono.stop();
+
+                }
+
+            }
+
         });
 
 //        chrono.start();
