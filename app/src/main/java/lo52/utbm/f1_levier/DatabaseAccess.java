@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ public class DatabaseAccess {
      *
      * @param context
      */
-    private DatabaseAccess(Context context) {
+    public DatabaseAccess(Context context) {
         this.openHelper = new DatabaseOpenHelper(context);
     }
 
@@ -51,34 +52,24 @@ public class DatabaseAccess {
             this.database.close();
         }
     }
+
+
     /**
-     * Read all quotes from the database.
+     * Read datas from the database.
      *
-     * @return a List of quotes
+     * @return a List of participants
      */
     public List<String> getDatas() {
 
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT Nom_participant, ech_participant, temps_sprint1 FROM participant", null);
+        Cursor cursor = database.rawQuery("SELECT Nom_participant, temps_pitstop FROM participant", null);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            list.add(cursor.getString(0));
+            list.add(cursor.getString(1));
 
-        if (cursor.moveToFirst()){
-            do {
-                // Passing values
-                String Nom_participant = cursor.getString(0);
-                String ech_participant = cursor.getString(1);
-                String temps_sprint1 = cursor.getString(2);
-
-
-
-                // Do something Here with values
-
-            } while(cursor.moveToNext());
+            cursor.moveToNext();
         }
-//        cursor.moveToFirst();
-//        while (!cursor.isAfterLast()) {
-//            list.add(cursor.getString(0));
-//            cursor.moveToNext();
-//        }
         cursor.close();
         return list;
     }
@@ -86,13 +77,10 @@ public class DatabaseAccess {
     public List<String> getTeams() {
 
         List<String> list = new ArrayList<>();
-        Cursor cursor = database.rawQuery("SELECT nom_equipe FROM equipe " ,null);
+        Cursor cursor = database.rawQuery("SELECT nom_equipe FROM equipe ", null);
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
             list.add(cursor.getString(0));
-//            list.add(cursor.getString(1));
-//            list.get(1);
-//            list.add(1,cursor.getString(1));
             cursor.moveToNext();
         }
         cursor.close();

@@ -16,7 +16,7 @@ public class Score extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score);
 
-        this.listView = (ListView) findViewById(R.id.listViewTest);
+        this.listView = (ListView) findViewById(R.id.listViewScore);
         DatabaseAccess databaseAccess = DatabaseAccess.getInstance(this);
         databaseAccess.open();
         List<String> levier = databaseAccess.getDatas();

@@ -16,13 +16,19 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Data"
-            android:layout_gravity="center_horizontal"/>
+            android:text="Score"
+            android:layout_margin="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30dp"
+            android:textColor="@color/yello"
+            android:textStyle="bold"/>
 
         <ListView
-            android:id="@+id/listViewTest"
+            android:id="@+id/listViewScore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"/>
+            android:layout_gravity="center_horizontal"
+            android:fadingEdgeLength="20dp"
+            />
     </LinearLayout>
 </LinearLayout>

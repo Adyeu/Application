@@ -1,5 +1,6 @@
 package lo52.utbm.f1_levier;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
